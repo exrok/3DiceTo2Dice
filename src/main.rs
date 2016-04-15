@@ -2,14 +2,14 @@ extern crate rand;
 use rand::Rng;
 
 fn main() {
-	const ROLLS: i64 = 1000000;
+	const ROLLS: i64 = 10000000;
     let mut rng  = rand::XorShiftRng::new_unseeded();
     let mut sumdist = vec![0; 11];
     let mut die1dist = vec![0; 6];
     let mut die2dist = vec![0; 6];
     let mut dice = vec![0,0,0];
-    let mut dval1 :u32= 0;
-    let mut dval2 :u32= 0;
+    let mut dval1 :u32;
+    let mut dval2 :u32;
     let mut dicedist: [[u32; 6]; 6];
     let mut dicedist: [[u32; 6]; 6] = [[0,0,0,0,0,0],
     									[0,0,0,0,0,0],
@@ -29,10 +29,18 @@ fn main() {
 		sumdist[(dval1+dval2) as usize]+=1;
 		dicedist[dval1 as usize][dval2 as usize] +=1
     }
-    println!("Die 1 {:?}", die1dist );
-    println!("Die 2 {:?}", die2dist );
-    println!("Die Dist Spectrum {:?}",dicedist );
+    println!("Die 1 Distribution");
+    for (i,x) in die1dist.iter().enumerate() {
+        print!("{}|{}  ",i+1, *x as f64/ROLLS as f64);
+    }
+    println!("\n\nDie 2 Distribution");
+    for (i,x) in die2dist.iter().enumerate() {
+        print!("{}|{}  ",i+1, *x as f64/ROLLS as f64);
+    }
+
+    println!("\n\nDie Dist Spectrum \n{:?}",dicedist );
+    println!("\nDie Sum Dist");
     for (i,x) in sumdist.iter().enumerate() {
-        println!("{:.2}:{}",i+2, *x as f64/ROLLS as f64);
+        print!("{}|{}  ",i+2, *x as f64/ROLLS as f64);
     }
 }
