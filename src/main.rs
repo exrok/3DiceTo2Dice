@@ -10,7 +10,6 @@ fn main() {
     let mut dice = vec![0,0,0];
     let mut dval1 :u32;
     let mut dval2 :u32;
-    let mut dicedist: [[u32; 6]; 6];
     let mut dicedist: [[u32; 6]; 6] = [[0,0,0,0,0,0],
     									[0,0,0,0,0,0],
     									[0,0,0,0,0,0],
